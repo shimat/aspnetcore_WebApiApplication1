@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+          
+      - name: Show dotnet version
+        run: |
+          dotnet --version          
+
+      - name: Restore dependencies
+        run: dotnet restore --runtime linux-x64
+
+      - name: Build
+        run: dotnet build --configuration Release --runtime linux-x64 --no-restore --no-self-contained
+
+      - name: Publish
+        run: dotnet publish--configuration Release --runtime linux-x64 --no-build 
