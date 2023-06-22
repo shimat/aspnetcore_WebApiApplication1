@@ -33,4 +33,4 @@ jobs:
       - name: Publish
         run: |
           cd WebApplication1
-          dotnet publish--configuration Release --runtime linux-x64 --no-build 
+          dotnet publish --configuration Release --runtime linux-x64 --no-build 
